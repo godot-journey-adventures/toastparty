@@ -33,4 +33,4 @@ ToastParty is an autoload singleton and should be used as follows:
 ## License
 Copyright (c) 2023 Francisco Pereira Alvarado (gammafp)
 
-Unless otherwise specified, files in this repository are licensed under the MIT license. See [LICENSE.md](LICENSE.md) for more information.
+Unless otherwise specified, files in this repository are licensed under the MIT license. See [LICENSE](LICENSE) for more information.
