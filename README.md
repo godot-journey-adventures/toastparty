@@ -6,7 +6,8 @@ Plugin created by Francisco Pereira Alvarado ([gammafp](https://twitter.com/gamm
 
 Please follow me on my social networks to follow my jobs: [LINKTREE](https://linktr.ee/gammafp)
 
-![Main Screen](https://i.gyazo.com/ea9e63136cbf51b678e56dce3d8a931d.gif)
+![Main Screen](no-copy-imgs/example.gif)
+
 
 ## Installation:
 1. Clone this repository into addons folder.
