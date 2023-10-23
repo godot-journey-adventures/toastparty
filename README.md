@@ -2,6 +2,8 @@
 
 Have fun with this marvelous plugin for generating small toast notifications.
 
+Toast Party is a versatile plugin for Godot that allows you to easily create toast-style notifications in your games and applications. Add an extra layer of interactivity and visual feedback to your Godot projects with ease. Bring your messages to life with Toast Party!
+
 Plugin created by Francisco Pereira Alvarado ([gammafp](https://twitter.com/gammafp)).
 
 Please follow me on my social networks to follow my jobs: [LINKTREE](https://linktr.ee/gammafp)
