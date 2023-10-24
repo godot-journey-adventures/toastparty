@@ -18,7 +18,7 @@ var _tween_in: Tween
 # local variables
 var gravity = "bottom" 		# top, bottom
 var direction = "center" 	# left, right, center
-var timer_to_destroy = 500 	# seconds by default
+var timer_to_destroy = 2 	# seconds by default
 
 func _ready():
 	_set_resolution()
@@ -115,7 +115,7 @@ func _tween_destroy_label_complete() -> void:
 func _tween_destroy_label_timer():
 	# tween alpha to 0
 	var tween_alpha = get_tree().create_tween()
-	tween_alpha.tween_property(self, "modulate:a", 0, timer_to_destroy).set_delay(3)
+	tween_alpha.tween_property(self, "modulate:a", 0, 0.8).set_delay(timer_to_destroy)
 	tween_alpha.tween_callback(_tween_destroy_label_complete)
 
 
