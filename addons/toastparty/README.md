@@ -8,7 +8,7 @@ Plugin created by Francisco Pereira Alvarado ([gammafp](https://twitter.com/gamm
 
 Please follow me on my social networks to follow my jobs: [LINKTREE](https://linktr.ee/gammafp)
 
-![Main Screen](https://i.gyazo.com/755bf9f9d0c37b692147103162ecd963.gif)
+![Main Screen](/no-copy-imgs/example.gif)
 
 
 ## Installation:
