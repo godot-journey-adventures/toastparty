@@ -33,6 +33,8 @@ func _clean_config(config: Dictionary) -> Dictionary:
 	var _config = config
 	if not _config.has("text"):
 		_config["text"] = "Toast Label"
+	if not _config.has("text_size"):
+		_config["text_size"] = 18
 	if not _config.has("bgcolor"):
 		_config["bgcolor"] = Color(0, 0, 0, .7)
 	if not _config.has("direction"):
@@ -41,8 +43,8 @@ func _clean_config(config: Dictionary) -> Dictionary:
 		_config["gravity"] = "bottom"
 	if not _config.has("color"):
 		_config["color"] = Color(1, 1, 1, 1)
-	if not _config.has("text_size"):
-		_config["text_size"] = 18
+	if not _config.has("use_font"):
+		_config["use_font"] = true
 	return _config
 
 
@@ -53,6 +55,7 @@ func init(config: Dictionary) -> void:
 	update_text(config_cleaned.text)
 	_set_bg_color(config_cleaned.bgcolor)
 	_set_color(config_cleaned.color)
+	_set_font(config_cleaned.use_font)
 	_set_text_size(config_cleaned.text_size)
 
 	direction = config_cleaned.direction
@@ -139,6 +142,13 @@ func _set_color(color: Color) -> void:
 	# set color
 	var theme_override = self.get("label_settings")
 	theme_override.set("font_color", color)
+
+
+func _set_font(use_font: bool) -> void:
+	# set font
+	if use_font == false:
+		var theme_override = self.get("label_settings")
+		theme_override.set("font", null)
 
 
 func _set_margins() -> void:

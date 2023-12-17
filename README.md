@@ -29,6 +29,7 @@ ToastParty is an autoload singleton and is used as follows:
     "color": Color(1, 1, 1, 1),     # Text Color
     "gravity": "top",               # top or bottom
     "direction": "right",           # left or center or right
+    "use_font": true,               # Use custom ToastParty font
 })
 ```
 
