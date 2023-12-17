@@ -16,9 +16,10 @@ var button_size
 var _tween_in: Tween
 
 # local variables
-var gravity = "bottom" 		# top, bottom
-var direction = "center" 	# left, right, center
-var timer_to_destroy = 2 	# seconds by default
+var gravity = "bottom"  # top, bottom
+var direction = "center"  # left, right, center
+var timer_to_destroy = 2  # seconds by default
+
 
 func _ready():
 	_set_resolution()
@@ -26,6 +27,7 @@ func _ready():
 
 	# start position
 	_tween_destroy_label_timer()
+
 
 func _clean_config(config: Dictionary) -> Dictionary:
 	var _config = config
@@ -39,6 +41,8 @@ func _clean_config(config: Dictionary) -> Dictionary:
 		_config["gravity"] = "bottom"
 	if not _config.has("color"):
 		_config["color"] = Color(1, 1, 1, 1)
+	if not _config.has("text_size"):
+		_config["text_size"] = 18
 	return _config
 
 
@@ -49,12 +53,13 @@ func init(config: Dictionary) -> void:
 	update_text(config_cleaned.text)
 	_set_bg_color(config_cleaned.bgcolor)
 	_set_color(config_cleaned.color)
+	_set_text_size(config_cleaned.text_size)
 
 	direction = config_cleaned.direction
 	gravity = config_cleaned.gravity
 
 	position.y = get_y_pos(-100, gravity)
-	
+
 	_set_margins()
 	_set_shadow_direction()
 
@@ -67,8 +72,8 @@ func update_text(_text: String) -> void:
 
 func move_to(index: int) -> void:
 	update_x_position()
-	
-	var offset_y = ((margin_between + button_size.y) * index);
+
+	var offset_y = (margin_between + button_size.y) * index
 	var _y = get_y_pos(offset_y, gravity)
 
 	# bottom
@@ -77,31 +82,21 @@ func move_to(index: int) -> void:
 		_tween_in.stop()
 		var delayed = 0.03
 		(
-			_tween_in.tween_property(
-				self,
-				"position",
-				Vector2(position.x, _y),
-				.3
-			)
-			.set_trans(Tween.TRANS_QUINT)
-			.set_ease(Tween.EASE_IN)
-
-			.set_delay(delayed)
+			_tween_in
+			. tween_property(self, "position", Vector2(position.x, _y), .3)
+			. set_trans(Tween.TRANS_QUINT)
+			. set_ease(Tween.EASE_IN)
+			. set_delay(delayed)
 		)
 		_tween_in.play()
 	else:
 		_tween_in = get_tree().create_tween()
 		_tween_in.stop()
 		(
-			_tween_in.tween_property(
-				self,
-				"position",
-				Vector2(position.x, _y),
-				.3
-			)
-			.set_trans(Tween.TRANS_ELASTIC)
-			.set_ease(Tween.EASE_IN_OUT)
-
+			_tween_in
+			. tween_property(self, "position", Vector2(position.x, _y), .3)
+			. set_trans(Tween.TRANS_ELASTIC)
+			. set_ease(Tween.EASE_IN_OUT)
 		)
 		_tween_in.play()
 
@@ -131,18 +126,20 @@ func get_y_pos(offset = 0, _gravity = "top") -> float:
 
 func update_x_position() -> void:
 	_set_resolution()
-	
+
 	if direction == "left":
 		position.x = margins.left + offset_position.x
 	elif direction == "center":
 		position.x = (resolution.x / 2) - (size.x / 2)
-	else: 
+	else:
 		position.x = resolution.x - margins.left - size.x - offset_position.x
+
 
 func _set_color(color: Color) -> void:
 	# set color
 	var theme_override = self.get("label_settings")
 	theme_override.set("font_color", color)
+
 
 func _set_margins() -> void:
 	# set margins
@@ -152,15 +149,16 @@ func _set_margins() -> void:
 	theme_override.set("expand_margin_right", margins.right)
 	theme_override.set("expand_margin_bottom", margins.bottom)
 
+
 func _set_shadow_direction() -> void:
 	# set shadow direction
-	var shadow_offset_abs = 2;
+	var shadow_offset_abs = 2
 	var theme_override = self.get("theme_override_styles/normal")
 	if gravity == "top" and direction == "left":
 		theme_override.set("shadow_offset", Vector2(-shadow_offset_abs, shadow_offset_abs))
 	elif gravity == "top" and direction == "right":
 		theme_override.set("shadow_offset", Vector2(shadow_offset_abs, shadow_offset_abs))
-	
+
 	elif gravity == "bottom" and direction == "left":
 		theme_override.set("shadow_offset", Vector2(-shadow_offset_abs, shadow_offset_abs))
 	elif gravity == "bottom" and direction == "right":
@@ -171,10 +169,18 @@ func _set_shadow_direction() -> void:
 	elif gravity == "bottom" and direction == "center":
 		theme_override.set("shadow_offset", Vector2(0, shadow_offset_abs))
 
+
+func _set_text_size(text_size: int) -> void:
+	# set text size
+	var theme_override = self.get("label_settings")
+	theme_override.set("font_size", text_size)
+
+
 func _set_bg_color(color: Color) -> void:
 	# set bg color
 	var theme_override = self.get("theme_override_styles/normal")
 	theme_override.set("bg_color", color)
+
 
 func _set_resolution():
 	resolution.x = get_viewport().get_visible_rect().size.x

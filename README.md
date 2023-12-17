@@ -10,19 +10,21 @@ Please follow me on my social networks to follow my jobs: [LINKTREE](https://lin
 
 ![Main Screen](no-copy-imgs/example.gif)
 
-
 ## Installation:
+
 1. Clone this repository into addons folder.
-2. Enabled ToastParty, go to: Porject > Project Settings > Plugins
+2. Enabled ToastParty, go to: Project > Project Settings > Plugins
 
 ![Drag Racing](no-copy-imgs/toast-party-install.png)
 
 ## Use:
-ToastParty is an autoload singleton and should be used as follows:
 
-```python 
+ToastParty is an autoload singleton and is used as follows:
+
+```python
 > ToastParty.show({
-    "text": "🥑Some Text🥑",       # Text (emojis can be admit)
+    "text": "🥑Some Text🥑",         # Text (emojis can be used)
+    "text_size": 18,                # Text (font) size
     "bgcolor": Color(0, 0, 0, 0.7), # Background Color
     "color": Color(1, 1, 1, 1),     # Text Color
     "gravity": "top",               # top or bottom
@@ -31,6 +33,7 @@ ToastParty is an autoload singleton and should be used as follows:
 ```
 
 ## License
+
 Copyright (c) 2023 Francisco Pereira Alvarado (gammafp)
 
 Unless otherwise specified, files in this repository are licensed under the MIT license. See [LICENSE](LICENSE) for more information.
