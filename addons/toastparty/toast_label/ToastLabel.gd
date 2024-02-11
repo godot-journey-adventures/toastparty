@@ -28,7 +28,6 @@ func _ready():
 	# start position
 	_tween_destroy_label_timer()
 
-
 func _clean_config(config: Dictionary) -> Dictionary:
 	var _config = config
 	if not _config.has("text"):
@@ -82,6 +81,7 @@ func move_to(index: int) -> void:
 	# bottom
 	if index == 0:
 		_tween_in = get_tree().create_tween()
+		_tween_in.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS) # pause mode
 		_tween_in.stop()
 		var delayed = 0.03
 		(
@@ -94,6 +94,7 @@ func move_to(index: int) -> void:
 		_tween_in.play()
 	else:
 		_tween_in = get_tree().create_tween()
+		_tween_in.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS) # pause mode
 		_tween_in.stop()
 		(
 			_tween_in
@@ -113,6 +114,7 @@ func _tween_destroy_label_complete() -> void:
 func _tween_destroy_label_timer():
 	# tween alpha to 0
 	var tween_alpha = get_tree().create_tween()
+	tween_alpha.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS) # pause mode
 	tween_alpha.tween_property(self, "modulate:a", 0, 0.8).set_delay(timer_to_destroy)
 	tween_alpha.tween_callback(_tween_destroy_label_complete)
 
@@ -136,7 +138,6 @@ func update_x_position() -> void:
 		position.x = (resolution.x / 2) - (size.x / 2)
 	else:
 		position.x = resolution.x - margins.left - size.x - offset_position.x
-
 
 func _set_color(color: Color) -> void:
 	# set color
